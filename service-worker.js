@@ -14,6 +14,10 @@ this.addEventListener('install', event => {
               "./js/showdown.min.js",
               "style.css",
               "./fonts/Catamaran-Regular.ttf",
+              "./images/github.png",
+              "./images/linkedin.png",
+              "./images/favicon.ico",
+              "./images/quora.png",
               offlineUrl
             ]);
         })

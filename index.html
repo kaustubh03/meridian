@@ -4,6 +4,7 @@
 <head>
     <title>Meridian : Real Time Markdown Editor</title>
     <link href="style.css" rel="stylesheet">
+    <link rel="favicon" href="./images/favicon.ico" />
     <!-- <link href="https://fonts.googleapis.com/css?family=Catamaran&display=swap" rel="stylesheet"> -->
 </head>
 
@@ -58,14 +59,31 @@
                     <ul>
                         <li onclick="initiateDownload('md')">Export to Markdown</li>
                         <li onclick="initiateDownload('html')">Export to HTML</li>
-                        <li>Github</li>
+                        <li onclick="goto('github')">Github</li>
                     </ul>
                 </div>
             </section>
             <section>
-                <div class="documentName">
-                    <label>Document Name</label>
-                    <span id="documentNameText" contenteditable>Meridian</span>
+                <div class="secondPane">
+                    <div class="documentName">
+                        <label>Document Name</label>
+                        <span id="documentNameText" contenteditable>Meridian</span>
+                        
+                    </div>
+                    <div class="social">
+                        <span>
+                            Made with ❤️  by xassuak
+                        </span>
+                        <span onclick="goto('linkedin')">
+                            <img src="./images/linkedin.png" />
+                        </span>
+                        <span onclick="goto('quora')">
+                            <img src="./images/quora.png" />
+                        </span>
+                        <span onclick="goto()">
+                            <img src="./images/github.png" />
+                        </span>
+                    </div>
                 </div>
                 <div class="documentStats">
                     <span class="label">Markdown</span>
@@ -80,7 +98,34 @@
             </section>
         </div>
         <section class="row content">
-            <textarea onkeyup="calculateStats()" class="col-md-6 full-height" id="pad">##Meridian</textarea>
+            <textarea onkeyup="calculateStats()" class="col-md-6 full-height" id="pad">
+## Meridian
+Real Time Markdown Editor with Offline Support.
+
+## Technologies Used -
+- HTML5
+- VanillaJS
+- ShowdownJS
+- Service Workers for Offline Support
+## How It works
+- Type some Markdown on the left
+- Preview HTML in the right
+- That's It.
+
+## Supports Images too
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/1280px-Markdown-mark.svg.png" alt="drawing" width="200" />
+## Offline support As soon as the internet disconnects, service workers will kick in order to support and run the cached
+content for offline mode.
+
+
+## How to Run
+
+Clone this repository and run index.html
+```
+git clone git@github.com:kaustubh03/meridian.git
+```
+*More Features coming soon. Stay Tuned*
+            </textarea>
             <div class="col-md-6 full-height" id="markdown"></div>
         </section>
         
@@ -108,6 +153,23 @@
             break;
        }
        
+    }
+
+    function goto(type){
+        switch(type){
+            case "github":
+                window.open('https://github.com/kaustubh03/meridian');
+            break;
+            case "linkedin":
+                window.open('https://www.linkedin.com/in/kaustubh-saxena-b953ba27/');
+            break;
+            case "quora":
+                window.open('https://www.quora.com/profile/Kaustubh-Saxena-2')
+            break;
+            default:
+                window.open('https://github.com/kaustubh03');
+            break;
+        }
     }
         // Register the service worker
         if ('serviceWorker' in navigator) {
