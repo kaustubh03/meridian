@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Meridian : Real Time Markdown Editor</title>
+    <link href="style.css" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Catamaran&display=swap" rel="stylesheet"> -->
+</head>
+
+<body class="container-fluid">
+    <div id="_meridian_loader_wrapper" class="wrapper">
+        <div class="loaderParent">
+        <div class="loader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <span class="typewriter"><h1>Meridian</h1></span>
+        </div>
+    </div>
+    <div class="_meridian_container" id="_meridian_container">
+        <div class="fixedPane">
+            <section class="header">
+                <h1>Meridian</h1>
+                <div class="menu">
+                    <ul>
+                        <li onclick="initiateDownload('md')">Export to Markdown</li>
+                        <li onclick="initiateDownload('html')">Export to HTML</li>
+                        <li>Github</li>
+                    </ul>
+                </div>
+            </section>
+            <section>
+                <div class="documentName">
+                    <label>Document Name</label>
+                    <span id="documentNameText" contenteditable>Meridian</span>
+                </div>
+                <div class="documentStats">
+                    <span class="label">Markdown</span>
+                    <div>
+                        <span class="label">Characters : <span id="characters"></span></span>
+                        <span class="label">Words : <span id="words"></span></span>
+                    </div>
+                    
+                    <span class="label">Preview</span>
+                </div>
+                
+            </section>
+        </div>
+        <section class="row content">
+            <textarea onkeyup="calculateStats()" class="col-md-6 full-height" id="pad">##Meridian</textarea>
+            <div class="col-md-6 full-height" id="markdown"></div>
+        </section>
+        
+    </div>
+    <script src="./js/showdown.min.js"></script>
+    <script src="./js/script.js"></script>
+
+</body>
+<script>
+    function initiateDownload(type){
+        let documentName = document.getElementById('documentNameText').textContent;
+       switch(type){
+           case "md":
+                let markdown = document.getElementById('pad').textContent;
+                download(documentName, markdown, 'data:text/markdown;charset=utf-8,');
+           break;
+           case "html":
+            let html = document.getElementById('markdown').innerHTML;
+               download(documentName, html, 'data:text/html;charset=utf-8,');
+            
+           break;
+           default:
+           let text = document.getElementById('pad').textContent;
+               download(documentName, text, 'data:text/plain;charset=utf-8,');
+            break;
+       }
+       
+    }
+        // Register the service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
+                // Registration was successful
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }).catch(function (err) {
+                // registration failed :(
+                console.log('ServiceWorker registration failed: ', err);
+            });
+        }
+
+</script>
+</html>
